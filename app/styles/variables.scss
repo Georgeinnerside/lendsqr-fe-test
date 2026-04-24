@@ -1,0 +1,48 @@
+// 1. Brand Colors
+$color-primary: #39CDCC;     
+$color-secondary: #213F7D;  
+$color-accent: #EE9F05;     
+
+// 2. Text Colors
+$text-main: #213F7D;        
+$text-sub: #545F7D;         
+$text-muted: rgba(84, 95, 125, 0.6); 
+
+// 3. Backgrounds & Borders
+$bg-main: #FBFBFB;         
+$bg-white: #FFFFFF;
+$border-light: rgba(33, 63, 125, 0.1); 
+$border-input: rgba(84, 95, 125, 0.15);
+
+// 4. Status Colors (Extracted from the User Table)
+$status-active: #39CD62;
+$status-active-bg: rgba(57, 205, 98, 0.06);
+
+$status-inactive: #545F7D;
+$status-inactive-bg: rgba(84, 95, 125, 0.06);
+
+$status-pending: #E9B200;
+$status-pending-bg: rgba(233, 178, 0, 0.06);
+
+$status-blacklisted: #E4033B;
+$status-blacklisted-bg: rgba(228, 3, 59, 0.06);
+
+ /* 5. Typography */
+$font-main: 'Inter', sans-serif; // Confirm font in Figma (usually Inter or Work Sans)
+$font-secondary: 'Roboto', sans-serif;
+
+$weight-regular: 400;
+$weight-medium: 500;
+$weight-semibold: 600;
+$weight-bold: 700;
+
+/* . Spacing & Shadow */
+$shadow-card: 3px 5px 20px rgba(0, 0, 0, 0.04);
+$shadow-filter: 0px 4px 4px rgba(0, 0, 0, 0.04);
+$border-radius: 8px;
+
+/* // 7. Breakpoints (Used for Mixins) */
+$breakpoint-mobile: 480px;
+$breakpoint-tablet: 768px;
+$breakpoint-desktop: 1024px;
+$breakpoint-large: 1440px;
