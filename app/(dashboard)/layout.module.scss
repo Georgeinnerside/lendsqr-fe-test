@@ -1,0 +1,24 @@
+@import "../../styles/variables.module.scss";
+
+.layoutContainer {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $bg-main; 
+
+  .mainWrapper {
+    display: flex;
+    flex: 1;
+
+    .content {
+      flex: 1;
+      padding: 60px;
+      overflow-y: auto;
+      max-height: calc(100vh - 100px); // Navbar height adjustment
+
+      @media (max-width: $breakpoint-tablet) {
+        padding: 20px;
+      }
+    }
+  }
+}

@@ -1,0 +1,95 @@
+@import "../../../styles/variables.module.scss";
+
+.tableWrapper {
+  background: $bg-white;
+  border: 1px solid $border-light;
+  box-shadow: $shadow-card;
+  border-radius: 4px;
+  padding: 30px;
+  overflow-x: auto; // Enables horizontal scrolling on mobile
+
+  .userTable {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: $font-main;
+
+    thead {
+      tr {
+        th {
+          text-align: left;
+          padding: 0 15px 20px 15px;
+          color: $text-sub;
+          font-weight: $weight-semibold;
+          font-size: 12px;
+          white-space: nowrap;
+
+          .filterIcon {
+            margin-left: 10px;
+            cursor: pointer;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        border-bottom: 1px solid $border-light;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        td {
+          padding: 20px 15px;
+          color: $text-sub;
+          font-size: 14px;
+          vertical-align: middle;
+
+          .kebabBtn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: $text-sub;
+            font-size: 18px;
+            padding: 5px;
+
+            &:hover {
+              color: $color-secondary;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+// Status Badge Logic
+.statusBadge {
+  padding: 7px 14px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: $weight-regular;
+  text-align: center;
+  display: inline-block;
+
+  &.active {
+    background-color: $status-active-bg;
+    color: $status-active;
+  }
+
+  &.inactive {
+    background-color: $status-inactive-bg;
+    color: $status-inactive;
+  }
+
+  &.pending {
+    background-color: $status-pending-bg;
+    color: $status-pending;
+  }
+
+  &.blacklisted {
+    background-color: $status-blacklisted-bg;
+    color: $status-blacklisted;
+  }
+}
