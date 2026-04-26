@@ -1,19 +1,17 @@
 "use client";
 import Image from "next/image";
-import styles from "./Sidebar.module.scss";
-import { ReactNode } from "react";
+import styles from "./statsCard/StatCard.module.scss";
 
 type Props = {
   icon: string;
-  iconBg: string;
   count: string;
   title: string;
 };
 
-export default function StatCard({ icon, count, iconBg, title }: Props) {
+export default function StatCard({ icon, count, title }: Props) {
   return (
     <div className={styles.card}>
-      <div className={styles.iconWrapper} style={{ backgroundColor: iconBg }}>
+      <div className={styles.iconWrapper}>
         <Image src={icon} width={24} height={24} alt={title} />
       </div>
       <p className={styles.title}>{title}</p>

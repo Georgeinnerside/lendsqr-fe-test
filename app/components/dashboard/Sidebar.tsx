@@ -30,7 +30,7 @@ const SIDEBAR_LINKS: SidebarSection[] = [
   {
     category: "BUSINESS",
     links: [
-      { name: "Organization", icon: "/assets/briefcase.svg", active: true },
+      { name: "Organization", icon: "/assets/briefcase.svg" },
       { name: "Loan Products", icon: "/assets/group-104.svg" },
       { name: "Savings Products", icon: "/assets/home.svg" },
       { name: "Fees and Charges", icon: "/assets/coins-solid-1.svg" },
@@ -44,7 +44,7 @@ const SIDEBAR_LINKS: SidebarSection[] = [
   {
     category: "SETTINGS",
     links: [
-      { name: "Preferences", icon: "/assets/sliders-h.svg", active: true },
+      { name: "Preferences", icon: "/assets/sliders-h.svg" },
       { name: "Fees and Pricing", icon: "/assets/badge-percent.svg" },
       { name: "Audit logs", icon: "/assets/clipboard-list.svg" },
     ],
@@ -55,19 +55,21 @@ export default function Sidebar() {
   return (
     <aside className={styles.sidebar}>
       <div className={styles.switchOrg}>
-        <Image src="/briefcase.svg" alt="" width={16} height={16} />
+        <Image src="/assets/briefcase.svg" alt="" width={16} height={16} />
         <span>Switch Organization</span>
       </div>
 
       {SIDEBAR_LINKS.map((group) => (
         <div key={group.category} className={styles.section}>
-          <h5>{group.category}</h5>
+          <h3>{group.category}</h3>
 
           <ul>
             {group.links.map((link) => (
               <li
                 key={link.name}
-                className={`${styles.link} ${link.active ? styles.active : ""}`}
+                className={`${styles.sidebarItem} ${
+                  link.active ? styles.active : ""
+                }`}
               >
                 <Image src={link.icon} alt="" width={16} height={16} />
                 <span>{link.name}</span>

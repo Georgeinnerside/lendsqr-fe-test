@@ -9,8 +9,19 @@
   padding-top: 30px;
   overflow-y: auto;
 
+  .switchOrg {
+    display: flex;
+    align-items: center;
+    padding: 0 30px 40px; 
+    color: $color-secondary;
+    font-size: 16px;
+    gap: 10px;
+    cursor: pointer;
+  }
+
   .section {
     margin-bottom: 30px;
+    padding: 20px;
 
     h3 {
       font-size: 12px;
@@ -22,7 +33,7 @@
     }
   }
 
-  .navItem {
+  .sidebarItem {
     display: flex;
     align-items: center;
     padding: 15px 30px;
