@@ -44,6 +44,15 @@
   }
 }
 
+.clickableRow {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: rgba(33, 63, 125, 0.05);
+  }
+}
+
 // Status Badges
 .statusBadge {
   padding: 7px 15px;

@@ -1,21 +1,25 @@
 import { useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import styles from "./UserTable.module.scss";
 import { useUserContext } from "@/context/UserContext";
 import FilterModal from "../../modals/FilterModals";
-import ActionModal from "../../modals/ActionModal"; // We'll create this below
+import ActionModal from "../../modals/ActionModal";
 
 export default function UserTable() {
-  const { paginatedUsers, updateUserStatus } = useUserContext();
-
-  // State for Modals
+  const { paginatedUsers } = useUserContext();
   const [showFilter, setShowFilter] = useState(false);
   const [activeStatusId, setActiveStatusId] = useState<string | null>(null);
+  const router = useRouter();
 
   const toggleFilter = () => setShowFilter(!showFilter);
 
-  const toggleKebab = (id: string) => {
+  const toggleStatus = (id: string) => {
     setActiveStatusId(activeStatusId === id ? null : id);
+  };
+
+  const handleRowClick = (userId: string) => {
+    router.push(`/users/${userId}`);
   };
 
   return (
@@ -78,13 +82,20 @@ export default function UserTable() {
 
         <tbody>
           {paginatedUsers.map((user) => (
-            <tr key={user.id}>
+            <tr
+              key={user.id}
+              className={styles.clickableRow}
+              onClick={() => handleRowClick(user.id)}
+            >
               <td>{user.organization}</td>
               <td>{user.username}</td>
               <td>{user.email}</td>
               <td style={{ position: "relative" }}>
                 <div
-                  onClick={() => toggleKebab(user.id)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    toggleStatus(user.id);
+                  }}
                   style={{ cursor: "pointer" }}
                 >
                   <span
