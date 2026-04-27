@@ -12,7 +12,7 @@ export default function StatCard({ icon, count, title }: Props) {
   return (
     <div className={styles.card}>
       <div className={styles.iconWrapper}>
-        <Image src={icon} width={24} height={24} alt={title} />
+        <Image src={icon} width={40} height={40} alt={title} />
       </div>
       <p className={styles.title}>{title}</p>
       <h2 className={styles.count}>{count}</h2>

@@ -1,0 +1,38 @@
+@import "../../styles/variables.module.scss";
+
+.actionModal {
+  position: absolute;
+  right: 20px;
+  top: 40px;
+  z-index: 110;
+  background: $bg-white;
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border: 1px solid rgba(84, 95, 125, 0.04);
+  border-radius: 4px;
+  width: 180px;
+  padding: 10px 0;
+
+  button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px 20px;
+    border: none;
+    background: none;
+    cursor: pointer;
+    color: $text-sub;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background 0.2s;
+
+    &:hover {
+      background-color: #f9f9fb;
+      color: $color-secondary;
+    }
+
+    img {
+      opacity: 0.8;
+    }
+  }
+}

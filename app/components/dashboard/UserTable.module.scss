@@ -1,6 +1,5 @@
 @import "../../../styles/variables.module.scss";
 
-
 .tableWrapper {
   background: $bg-white;
   border: 1px solid $border-light;
@@ -16,16 +15,22 @@
 
     th {
       padding: 0 10px 20px 10px;
-      
+      text-align: left;
+
       .thContent {
         display: flex;
         align-items: center;
-        gap: 10px; // Spacing between text and filter icon
+        gap: 10px;
         color: $text-sub;
         font-weight: $weight-semibold;
         font-size: 12px;
         text-transform: uppercase;
+        white-space: nowrap;
         cursor: pointer;
+
+        img {
+          display: block;
+        }
       }
     }
 

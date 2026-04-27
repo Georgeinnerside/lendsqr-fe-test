@@ -1,0 +1,74 @@
+@import "../../styles/variables.module.scss"; 
+
+.filterModal {
+  position: absolute;
+  top: 40px;
+  left: 0;
+  background: #ffffff;
+  border: 1px solid rgba(84, 95, 125, 0.14);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  border-radius: 4px;
+  padding: 20px;
+  z-index: 200;
+  width: 270px;
+  cursor: default;
+
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: $status-inactive;
+    margin-bottom: 6px;
+  }
+
+  input,
+  select {
+    width: 100%;
+    height: 40px;
+    background: $bg-main;
+    border: 1px solid $border-light;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    padding: 0 10px;
+    outline: none;
+    color: $status-inactive;
+  }
+
+  // This is the container that makes the buttons sit side-by-side
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    margin-top: 15px;
+
+    button {
+      flex: 1; // This makes both buttons take up equal space
+      height: 40px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &.reset {
+        background: transparent;
+        border: 1px solid $status-inactive;
+        color: $status-inactive;
+
+        &:hover {
+          background: $bg-main;
+        }
+      }
+
+      &.filter {
+        background: $color-primary; 
+        color: $bg-main;
+        border: 1px solid $color-primary;
+
+        &:hover {
+          background: darken($color-primary, 5%);
+        }
+      }
+    }
+  }
+}

@@ -1,79 +1,116 @@
-import styles from "./UserTable.module.scss";
+import { useState } from "react";
 import Image from "next/image";
-import User from "@/service/types";
+import styles from "./UserTable.module.scss";
+import { useUserContext } from "@/context/UserContext";
+import FilterModal from "../../modals/FilterModals";
+import ActionModal from "../../modals/ActionModal"; // We'll create this below
 
-export default function UserTable({ users }: { users: User[] }) {
+export default function UserTable() {
+  const { paginatedUsers, updateUserStatus } = useUserContext();
+
+  // State for Modals
+  const [showFilter, setShowFilter] = useState(false);
+  const [activeStatusId, setActiveStatusId] = useState<string | null>(null);
+
+  const toggleFilter = () => setShowFilter(!showFilter);
+
+  const toggleKebab = (id: string) => {
+    setActiveStatusId(activeStatusId === id ? null : id);
+  };
+
   return (
     <div className={styles.tableWrapper}>
       <table className={styles.userTable}>
         <thead>
           <tr>
-            <th>
-              ORGANIZATION{" "}
-              <span>
-                {" "}
+            {/* Clickable Header for Filter */}
+            <th onClick={toggleFilter} style={{ position: "relative" }}>
+              <div className={styles.thContent}>
+                ORGANIZATION
                 <Image
                   src="/assets/filter-results-button.svg"
-                  width={20}
-                  height={20}
-                  alt="options"
+                  width={16}
+                  height={16}
+                  alt="filter"
                 />
-              </span>
+              </div>
+              {/* Filter Modal nested in Header for absolute positioning */}
+              {showFilter && (
+                <FilterModal onClose={() => setShowFilter(false)} />
+              )}
             </th>
             <th>
-              USERNAME{" "}
-              <span>
-                {" "}
+              <div className={styles.thContent}>
+                USERNAME{" "}
                 <Image
                   src="/assets/filter-results-button.svg"
-                  width={20}
-                  height={20}
-                  alt="options"
+                  width={16}
+                  height={16}
+                  alt="filter"
                 />
-              </span>
+              </div>
             </th>
             <th>
-              EMAIL{" "}
-              <span>
-                {" "}
+              <div className={styles.thContent}>
+                EMAIL{" "}
                 <Image
                   src="/assets/filter-results-button.svg"
-                  width={20}
-                  height={20}
-                  alt="options"
+                  width={16}
+                  height={16}
+                  alt="filter"
                 />
-              </span>
+              </div>
             </th>
             <th>
-              STATUS{" "}
-              <span>
-                {" "}
+              <div className={styles.thContent}>
+                STATUS{" "}
                 <Image
                   src="/assets/filter-results-button.svg"
-                  width={20}
-                  height={20}
-                  alt="options"
+                  width={16}
+                  height={16}
+                  alt="filter"
                 />
-              </span>
+              </div>
             </th>
             <th></th>
           </tr>
         </thead>
+
         <tbody>
-          {users.map((user) => (
+          {paginatedUsers.map((user) => (
             <tr key={user.id}>
-              <td>{user.organization} </td>
+              <td>{user.organization}</td>
               <td>{user.username}</td>
               <td>{user.email}</td>
-              <td></td>
-              <td>
-                <span
-                  className={`${styles.statusBadge} ${
-                    styles[user.status.toLowerCase()]
-                  }`}
+              <td style={{ position: "relative" }}>
+                <div
+                  onClick={() => toggleKebab(user.id)}
+                  style={{ cursor: "pointer" }}
                 >
-                  {user.status}
-                </span>
+                  <span
+                    className={`${styles.statusBadge} ${
+                      styles[user.status.toLowerCase()]
+                    }`}
+                  >
+                    {user.status}
+                  </span>
+
+                  {/* Action Modal (View Details, Blacklist, Activate) */}
+                  {activeStatusId === user.id && (
+                    <ActionModal
+                      userId={user.id}
+                      onAction={() => setActiveStatusId(null)}
+                    />
+                  )}
+                </div>
+              </td>
+              <td>
+                <Image
+                  src="/assets/kebab.svg"
+                  alt="kebab"
+                  width={20}
+                  height={20}
+                />
               </td>
             </tr>
           ))}
