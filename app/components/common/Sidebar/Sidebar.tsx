@@ -52,7 +52,6 @@ export default function Sidebar() {
   const handleLogout = () => {
     logout();
     router.push("/login");
-    router.refresh();
   };
 
   return (
@@ -92,7 +91,7 @@ export default function Sidebar() {
 
       {isUserDetailsPage && (
         <div className={styles.logoutSection}>
-          <button onClick={handleLogout} className={styles.logoutButton}>
+          <button onClick={handleLogout} className={styles.logoutButton} aria-label="logout">
             <Image
               src="/assets/logout.svg"
               alt="logout-icon"

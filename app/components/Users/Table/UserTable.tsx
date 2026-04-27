@@ -77,17 +77,6 @@ export default function UserTable() {
             </th>
             <th>
               <div className={styles.thContent}>
-                STATUS{" "}
-                <Image
-                  src="/assets/filter-results-button.svg"
-                  width={16}
-                  height={16}
-                  alt="filter"
-                />
-              </div>
-            </th>
-            <th>
-              <div className={styles.thContent}>
                 PHONE NUMBER{" "}
                 <Image
                   src="/assets/filter-results-button.svg"
@@ -100,6 +89,17 @@ export default function UserTable() {
             <th>
               <div className={styles.thContent}>
                 DATE JOINED{" "}
+                <Image
+                  src="/assets/filter-results-button.svg"
+                  width={16}
+                  height={16}
+                  alt="filter"
+                />
+              </div>
+            </th>
+            <th>
+              <div className={styles.thContent}>
+                STATUS{" "}
                 <Image
                   src="/assets/filter-results-button.svg"
                   width={16}
