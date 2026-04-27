@@ -1,10 +1,24 @@
 "use client";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
+import { useUserContext } from "@/context/UserContext";
 import styles from "./LoginPage.module.scss";
 
 export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
+  const [email, setEmail] = useState("");
+  const { login } = useUserContext();
+  const router = useRouter();
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (email) {
+      login(email);
+      router.push("/users");
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -29,9 +43,14 @@ export default function LoginPage() {
           <h1>Welcome.</h1>
           <p>Enter details to login.</p>
 
-          <form onSubmit={(e) => e.preventDefault()}>
+          <form onSubmit={handleSubmit}>
             <div className={styles.inputGroup}>
-              <input type="email" placeholder="Email" required />
+              <input
+                type="email"
+                placeholder="Email"
+                required
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
 
             <div className={styles.inputGroup}>

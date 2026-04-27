@@ -14,7 +14,7 @@
       flex: 1;
       padding: 60px;
       overflow-y: auto;
-      max-height: calc(100vh - 100px); // Navbar height adjustment
+      max-height: calc(100vh - 100px); 
 
       @media (max-width: $breakpoint-tablet) {
         padding: 20px;

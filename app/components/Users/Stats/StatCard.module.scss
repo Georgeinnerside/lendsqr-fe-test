@@ -30,15 +30,15 @@
   }
 
   .title {
-    font-size: 14px; // Smaller, refined size
+    font-size: 14px;
     font-weight: 500;
-    color: #545f7d;
-    text-transform: uppercase; // Makes it look professional
+    color: $text-sub;
+    text-transform: uppercase;
     margin: 0 0 12px 0;
   }
 
   .count {
-    font-size: 24px; // Adjusted from 32px or default h2
+    font-size: 24px;
     font-weight: 600;
     color: $text-main;
     margin: 0;

@@ -8,7 +8,7 @@ import {
   useMemo,
   ReactNode,
 } from "react";
-import type User from "@/service/types";
+import type User from "@/users-data/types/types";
 import initialUsers from "../users-data/data.json";
 
 const STORAGE_KEY = "lendsqr_users";
@@ -36,6 +36,10 @@ interface UserContextType {
   currentPage: number;
   perPage: number;
   filter: UserFilter;
+  isLoggedIn: Boolean;
+  login: (email: string) => void;
+  logout: () => void;
+  applyFilterSearch: (query: string) => void;
   setPage: (page: number) => void;
   setPerPage: (count: number) => void;
   applyFilter: (filter: UserFilter) => void;
@@ -55,20 +59,40 @@ export function UserContextProvider({ children }: { children: ReactNode }) {
       return initialUsers as User[];
     }
   });
-
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
   const [filter, setFilter] = useState<UserFilter>(DEFAULT_FILTER);
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage, setPerPage] = useState(10);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  //   check if user exists on local storage
+  useEffect(() => {
+    const auth = localStorage.getItem("lendsqr_auth");
+    if (auth) setIsLoggedIn(true);
+  }, []);
 
   // Persist to localStorage whenever users change
   useEffect(() => {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(users));
   }, [users]);
 
+  const applyFilterSearch = (query: string) => {
+    console.log("Context receiving search query:", query);
+    setSearchQuery(query.toLowerCase());
+    setCurrentPage(1);
+  };
+
   // filtered user list
   const filteredUsers = useMemo(() => {
     return users.filter((user) => {
-      return (
+      const searchInputFilter =
+        !searchQuery ||
+        user.username.toLowerCase().includes(searchQuery) ||
+        user.email.toLowerCase().includes(searchQuery) ||
+        user.organization.toLowerCase().includes(searchQuery) ||
+        user.personalInfo.fullName.toLowerCase().includes(searchQuery);
+
+      const modalFilters =
         (!filter.organization ||
           user.organization
             .toLowerCase()
@@ -83,10 +107,11 @@ export function UserContextProvider({ children }: { children: ReactNode }) {
           user.dateJoined
             .toLowerCase()
             .includes(filter.dateJoined.toLowerCase())) &&
-        (!filter.status || user.status === filter.status)
-      );
+        (!filter.status || user.status === filter.status);
+
+      return searchInputFilter && modalFilters;
     });
-  }, [users, filter]);
+  }, [users, filter, searchQuery]);
 
   // Paginate filtered list
   const paginatedUsers = useMemo(() => {
@@ -112,6 +137,16 @@ export function UserContextProvider({ children }: { children: ReactNode }) {
     setCurrentPage(1);
   }
 
+  const login = (email: string) => {
+    localStorage.setItem("lendsqr_auth", "true");
+    setIsLoggedIn(true);
+  };
+
+  const logout = () => {
+    localStorage.removeItem("lendsqr_auth");
+    setIsLoggedIn(false);
+  };
+
   const value: UserContextType = {
     users,
     filteredUsers,
@@ -119,6 +154,10 @@ export function UserContextProvider({ children }: { children: ReactNode }) {
     currentPage,
     perPage,
     filter,
+    isLoggedIn,
+    login,
+    logout,
+    applyFilterSearch,
     setPage: setCurrentPage,
     setPerPage,
     applyFilter,

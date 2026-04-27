@@ -3,8 +3,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import styles from "./UserTable.module.scss";
 import { useUserContext } from "@/context/UserContext";
-import FilterModal from "../../modals/FilterModals";
-import ActionModal from "../../modals/ActionModal";
+import FilterModal from "../../common/Modal/FilterModals";
+import ActionModal from "../../common/Modal/ActionModal";
 
 export default function UserTable() {
   const { paginatedUsers } = useUserContext();
@@ -20,6 +20,16 @@ export default function UserTable() {
 
   const handleRowClick = (userId: string) => {
     router.push(`/users/${userId}`);
+  };
+
+  // format date
+  const dataFormat = (yearStr: string) => {
+    if (yearStr.includes("yyyy")) {
+      const randomYear = Math.floor(Math.random() * (2026 - 2022 + 1)) + 2022;
+      return yearStr.replace("yyyy", randomYear.toString());
+    }
+
+    return yearStr;
   };
 
   return (
@@ -76,6 +86,28 @@ export default function UserTable() {
                 />
               </div>
             </th>
+            <th>
+              <div className={styles.thContent}>
+                PHONE NUMBER{" "}
+                <Image
+                  src="/assets/filter-results-button.svg"
+                  width={16}
+                  height={16}
+                  alt="filter"
+                />
+              </div>
+            </th>
+            <th>
+              <div className={styles.thContent}>
+                DATE JOINED{" "}
+                <Image
+                  src="/assets/filter-results-button.svg"
+                  width={16}
+                  height={16}
+                  alt="filter"
+                />
+              </div>
+            </th>
             <th></th>
           </tr>
         </thead>
@@ -90,6 +122,8 @@ export default function UserTable() {
               <td>{user.organization}</td>
               <td>{user.username}</td>
               <td>{user.email}</td>
+              <td>{user.phoneNumber}</td>
+              <td>{dataFormat(user.dateJoined)}</td>
               <td style={{ position: "relative" }}>
                 <div
                   onClick={(e) => {

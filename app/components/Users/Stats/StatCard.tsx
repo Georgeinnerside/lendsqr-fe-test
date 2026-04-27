@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
-import styles from "./statsCard/StatCard.module.scss";
+import styles from "./Users.module.scss";
 
 type Props = {
   icon: string;
   count: string;
   title: string;
+  type?: "users" | "active" | "loans" | "savings";
 };
 
 export default function StatCard({ icon, count, title }: Props) {

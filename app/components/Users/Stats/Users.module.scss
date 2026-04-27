@@ -1,0 +1,66 @@
+@import "../../../../styles/variables.module.scss";
+
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 26px;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.pageTitle {
+  color: $text-main;
+  font-size: 34px;
+  font-weight: 500;
+  margin-bottom: 40px;
+}
+
+
+.card {
+  background-color: $bg-white;
+  padding: 20px 30px;
+  border-radius: 4px;
+  border: 1px solid rgba(33, 63, 125, 0.06);
+  box-shadow: 3px 5px 20px rgba(0, 0, 0, 0.04);
+  min-width: 0; 
+
+  .iconWrapper {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+
+    
+    &.users {
+      background: rgba(223, 24, 255, 0.1);
+    }
+    &.active {
+      background: rgba(87, 24, 255, 0.1);
+    }
+    &.loans {
+      background: rgba(245, 95, 68, 0.1);
+    }
+    &.savings {
+      background: rgba(255, 51, 102, 0.1);
+    }
+  }
+
+  .title {
+    font-size: 14px;
+    font-weight: 500;
+    color: $text-sub;
+    text-transform: uppercase;
+    margin: 0 0 12px 0;
+  }
+
+  .count {
+    font-size: 24px;
+    font-weight: 600;
+    color: $text-main;
+    margin: 0;
+  }
+}
