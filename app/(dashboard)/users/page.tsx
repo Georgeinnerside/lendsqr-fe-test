@@ -1,7 +1,7 @@
 "use client";
 
 import { getUsers } from "@/service/userService";
-import User from "@/users-data/types/types";
+import User from "@/types/types";
 import { useState, useEffect } from "react";
 import StatCard from "@/app/components/Users/Stats/StatCard";
 import { statsData } from "@/app/components/Users/Stats/StatsData";
@@ -24,7 +24,23 @@ export default function UserPage() {
     fectchUsers();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <div
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          minHeight: "300px",
+          width: "100%",
+          color: "#213F7D",
+        }}
+      >
+        Loaging...
+      </div>
+    );
+
   return (
     <div className={styles.pageWrapper}>
       <h1 className={statStyles.pageTitle}>Users</h1>

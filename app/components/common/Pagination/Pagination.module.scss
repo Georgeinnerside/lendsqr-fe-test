@@ -1,81 +1,100 @@
 @import "../../../../styles/variables.module.scss";
 
-
 .paginationContainer {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  padding: 0 10px;
+  font-family: $font-main;
+  color: $text-sub;
+  font-size: 14px;
+
+  @media (max-width: 850px) {
+    flex-direction: column;
     align-items: center;
-    margin-top: 20px;
-    padding: 0 10px;
-    font-family: $font-main;
-    color: $text-sub;
-    font-size: 14px;
-  
-    .showing {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-  
-      select {
-        background: rgba(33, 63, 125, 0.1);
-        border: none;
-        border-radius: 4px;
-        padding: 7px 12px;
-        color: $color-secondary;
-        font-weight: $weight-semibold;
-        cursor: pointer;
-        outline: none;
-  
-        &:focus {
-          border: 1px solid $color-primary;
-        }
-      }
-    }
-  
-    .controls {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-  
-      button {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 24px;
-        height: 24px;
-        border: none;
-        border-radius: 4px;
-        
-        color: $color-secondary;
-        cursor: pointer;
-        transition: background 0.2s;
-  
-        &:disabled {
-          opacity: 0.4;
-          cursor: not-allowed;
-        }
-  
-        &:hover:not(:disabled) {
-          background: rgba(33, 63, 125, 0.2);
-        }
-      }
-  
-      span {
-        cursor: pointer;
-        padding: 2px 5px;
-        font-size: 14px;
-        color: $text-sub;
-        opacity: 0.6;
-  
-        &.activePage {
-          color: $text-sub;
-          font-weight: $weight-semibold;
-          opacity: 1;
-        }
-  
-        &:hover {
-          opacity: 1;
-        }
+    text-align: center;
+    gap: 15px;
+  }
+
+  .showing {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    select {
+      background: rgba(33, 63, 125, 0.1);
+      border: none;
+      border-radius: 4px;
+      padding: 7px 12px;
+      color: $color-secondary;
+      font-weight: $weight-semibold;
+      cursor: pointer;
+      outline: none;
+
+      &:focus {
+        border: 1px solid $color-primary;
       }
     }
   }
+
+  .controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+
+    @media (max-width: 480px) {
+      span:not(.activePage) {
+        display: none;
+      }
+
+      &::before {
+        content: "Page";
+        margin-right: -5px;
+      }
+    }
+
+    button {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      border: none;
+      border-radius: 4px;
+
+      color: $color-secondary;
+      cursor: pointer;
+      transition: background 0.2s;
+
+      &:disabled {
+        opacity: 0.4;
+        cursor: not-allowed;
+      }
+
+      &:hover:not(:disabled) {
+        background: rgba(33, 63, 125, 0.2);
+      }
+    }
+
+    span {
+      cursor: pointer;
+      padding: 2px 5px;
+      font-size: 14px;
+      color: $text-sub;
+      opacity: 0.6;
+
+      &.activePage {
+        color: $text-sub;
+        font-weight: $weight-semibold;
+        opacity: 1;
+      }
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}

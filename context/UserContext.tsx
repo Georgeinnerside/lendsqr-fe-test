@@ -8,26 +8,12 @@ import {
   useMemo,
   ReactNode,
 } from "react";
-import type User from "@/users-data/types/types";
+import type User from "@/types/types";
 import initialUsers from "../users-data/data.json";
+import { UserFilter } from "@/types/types";
+import { DEFAULT_FILTER } from "@/types/types";
 
 const STORAGE_KEY = "lendsqr_users";
-
-type UserFilter = {
-  organization: string;
-  username: string;
-  email: string;
-  dateJoined: string;
-  status: User["status"] | "";
-};
-
-const DEFAULT_FILTER: UserFilter = {
-  organization: "",
-  username: "",
-  email: "",
-  dateJoined: "",
-  status: "",
-};
 
 interface UserContextType {
   users: User[];
@@ -123,7 +109,7 @@ export function UserContextProvider({ children }: { children: ReactNode }) {
     setUsers((prev) =>
       prev.map((user): User => (user.id === id ? { ...user, status } : user))
     );
-    // Reset to page 1
+
     setCurrentPage(1);
   }
 

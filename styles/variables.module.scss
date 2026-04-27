@@ -1,36 +1,42 @@
+body,
+html {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
 // 1. Brand Colors
-$color-primary: #39CDCC;     // Teal/Cyan
-$color-secondary: #213F7D;  // Navy Blue
-$color-accent: #EE9F05;     // Orange/Yellow
+$color-primary: #39cdcc; // Teal/Cyan
+$color-secondary: #213f7d; // Navy Blue
+$color-accent: #ee9f05; // Orange/Yellow
 
 // 2. Text Colors
-$text-main: #213F7D;    
-$text-sub: #545F7D;         
-$text-muted: rgba(84, 95, 125, 0.6); 
+$text-main: #213f7d;
+$text-sub: #545f7d;
+$text-muted: rgba(84, 95, 125, 0.6);
 
 // 3. Backgrounds & Borders
-$bg-main: #FBFBFB;         
-$bg-white: #FFFFFF;
+$bg-main: #fbfbfb;
+$bg-white: #ffffff;
 $bg-sub: #d5dce8;
-$border-light: rgba(33, 63, 125, 0.1); 
+$border-light: rgba(33, 63, 125, 0.1);
 $border-input: rgba(84, 95, 125, 0.15);
 
 // 4. Status Colors
-$status-active: #39CD62;
+$status-active: #39cd62;
 $status-active-bg: rgba(57, 205, 98, 0.06);
 
-$status-inactive: #545F7D;
+$status-inactive: #545f7d;
 $status-inactive-bg: rgba(84, 95, 125, 0.06);
 
-$status-pending: #E9B200;
+$status-pending: #e9b200;
 $status-pending-bg: rgba(233, 178, 0, 0.06);
 
-$status-blacklisted: #E4033B;
+$status-blacklisted: #e4033b;
 $status-blacklisted-bg: rgba(228, 3, 59, 0.06);
 
 // 5. Typography
-$font-main: 'Work Sans', sans-serif; // Lendsqr typically uses Work Sans
-$font-secondary: 'Roboto', sans-serif;
+$font-main: "Work Sans", sans-serif; // Lendsqr typically uses Work Sans
+$font-secondary: "Roboto", sans-serif;
 
 $weight-regular: 400;
 $weight-medium: 500;

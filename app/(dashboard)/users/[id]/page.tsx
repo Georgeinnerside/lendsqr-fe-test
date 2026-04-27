@@ -71,7 +71,6 @@ export default function UserDetailsPage() {
           </div>
 
           <div className={styles.balanceSection}>
-            {/* Using the first value from the monthlyIncome array */}
             <h3>{user.education.monthlyIncome[0]}</h3>
             <p>9912345678/Providus Bank</p>
           </div>

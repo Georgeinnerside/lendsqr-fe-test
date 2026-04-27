@@ -1,5 +1,5 @@
 import users from "../users-data/data.json";
-import User from "../users-data/types/types";
+import User from "../types/types";
 
 // Delay before loading
 const delay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms));

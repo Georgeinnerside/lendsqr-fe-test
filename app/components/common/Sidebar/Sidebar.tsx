@@ -1,17 +1,6 @@
 import Image from "next/image";
-
 import styles from "./Sidebar.module.scss";
-
-export type SidebarLink = {
-  name: string;
-  icon: string;
-  active?: boolean;
-};
-
-export type SidebarSection = {
-  category: string;
-  links: SidebarLink[];
-};
+import { SidebarSection } from "@/types/types";
 
 const SIDEBAR_LINKS: SidebarSection[] = [
   {

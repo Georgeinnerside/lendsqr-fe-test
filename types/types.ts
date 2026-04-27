@@ -37,3 +37,30 @@ export default interface User {
     relationship: "Brother" | "Sister" | "Parent" | "Friend";
   };
 }
+
+export type UserFilter = {
+  organization: string;
+  username: string;
+  email: string;
+  dateJoined: string;
+  status: User["status"] | "";
+};
+
+export const DEFAULT_FILTER: UserFilter = {
+  organization: "",
+  username: "",
+  email: "",
+  dateJoined: "",
+  status: "",
+};
+
+export type SidebarLink = {
+  name: string;
+  icon: string;
+  active?: boolean;
+};
+
+export type SidebarSection = {
+  category: string;
+  links: SidebarLink[];
+};
