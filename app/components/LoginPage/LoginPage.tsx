@@ -48,6 +48,7 @@ export default function LoginPage() {
               <input
                 type="email"
                 placeholder="Email"
+                autoComplete="off"
                 required
                 onChange={(e) => setEmail(e.target.value)}
               />
@@ -57,6 +58,7 @@ export default function LoginPage() {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Password"
+                autoComplete="new-password"
                 required
               />
               <span

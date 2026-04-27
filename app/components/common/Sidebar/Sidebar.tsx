@@ -1,5 +1,7 @@
 import Image from "next/image";
+import { usePathname, useRouter } from "next/navigation";
 import styles from "./Sidebar.module.scss";
+import { useUserContext } from "@/context/UserContext";
 import { SidebarSection } from "@/types/types";
 
 const SIDEBAR_LINKS: SidebarSection[] = [
@@ -41,11 +43,31 @@ const SIDEBAR_LINKS: SidebarSection[] = [
 ];
 
 export default function Sidebar() {
+  const pathname = usePathname();
+  const router = useRouter();
+  const { logout } = useUserContext();
+  const isUserDetailsPage =
+    pathname.startsWith("/users/") && pathname !== "/users";
+
+  const handleLogout = () => {
+    logout();
+    router.push("/login");
+    router.refresh();
+  };
+
   return (
     <aside className={styles.sidebar}>
       <div className={styles.switchOrg}>
         <Image src="/assets/briefcase.svg" alt="" width={16} height={16} />
         <span>Switch Organization</span>
+        <span>
+          <Image
+            src="/assets/dropdown.svg"
+            alt="dropdown"
+            width={12}
+            height={12}
+          />
+        </span>
       </div>
 
       {SIDEBAR_LINKS.map((group) => (
@@ -67,6 +89,21 @@ export default function Sidebar() {
           </ul>
         </div>
       ))}
+
+      {isUserDetailsPage && (
+        <div className={styles.logoutSection}>
+          <button onClick={handleLogout} className={styles.logoutButton}>
+            <Image
+              src="/assets/logout.svg"
+              alt="logout-icon"
+              width={16}
+              height={16}
+            />
+            <span>Logout</span>
+          </button>
+          <p className={styles.version}>v1.2.0</p>
+        </div>
+      )}
     </aside>
   );
 }
